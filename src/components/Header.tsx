@@ -1,19 +1,15 @@
 import { FC, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import {
-  Box,
-  Typography,
-  Input,
-  InputAdornment,
-  createStyles,
-  Theme,
-} from "@mui/material";
+import { Box, Typography, createStyles, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { School, Map, QuestionAnswer, Search } from "@mui/icons-material";
 
 import Icons from "assets/Icons";
 import { paths } from "configs/routes";
 import colors from "utils/colors";
+
+import { selectUser } from "redux/authSlice";
 
 const routes = [
   { name: "Courses", path: paths.courses, icon: School },
@@ -22,6 +18,7 @@ const routes = [
 ];
 
 const Header: FC = () => {
+  const user = useSelector(selectUser);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -47,16 +44,15 @@ const Header: FC = () => {
         className={styles.logo}
         onClick={() => navigate(paths.home)}
       />
-      <Input
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Type to search"
-        startAdornment={
-          <InputAdornment position="start">
-            <Search />
-          </InputAdornment>
-        }
-      />
+      <Box display="flex" alignItems="center">
+        <Search color="primary" />
+        <input
+          className={styles.input}
+          placeholder="Type to search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </Box>
       <Box display="flex">
         {routes.map((route) => (
           <Box mx={5}>
@@ -70,7 +66,14 @@ const Header: FC = () => {
           </Box>
         ))}
       </Box>
-      <Typography className={styles.text}>Register</Typography>
+      {!user && (
+        <Typography
+          className={styles.text}
+          onClick={() => navigate(paths.register)}
+        >
+          Register
+        </Typography>
+      )}
     </Box>
   );
 };
@@ -81,6 +84,16 @@ const useStyles: any = makeStyles((theme: Theme) =>
   createStyles({
     logo: {
       cursor: "pointer",
+    },
+    input: {
+      border: 0,
+      padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+      marginLeft: theme.spacing(2),
+      fontSize: "1rem",
+      color: colors.dark,
+      "&:focus": {
+        outline: "none",
+      },
     },
     text: {
       fontWeight: 700,
