@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Box } from "@mui/material";
 
-function App() {
+import "./App.css";
+
+import Header from "components/Header";
+import Loading from "components/Loading";
+import AuthRoutes from "navigations/AuthRoutes";
+import MainRoutes from "navigations/MainRoutes";
+
+import { selectInitialized, selectUser, setUser } from "redux/authSlice";
+
+const App = () => {
+  const dispatch = useDispatch();
+  const initialized = useSelector(selectInitialized);
+  const user = useSelector(selectUser);
+
+  const getUser = useCallback(async () => {
+    // dispatch(setUser())
+    dispatch(setUser({ email: "hungdev.js@gmail.com", username: "hungdevjs" }));
+  }, [dispatch]);
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  if (!initialized) return <Loading />;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+      <Header />
+      {user ? <MainRoutes /> : <AuthRoutes />}
+    </Box>
   );
-}
+};
 
 export default App;
