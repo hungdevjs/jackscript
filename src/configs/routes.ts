@@ -43,7 +43,7 @@ const routes: Route[] = [
   },
   {
     name: "Login",
-    path: "/login",
+    path: paths.login,
     component: Login,
     type: RouteTypes.AnonymousOnly,
   },

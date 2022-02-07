@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import { RouteTypes } from "interfaces/route";
-import routes from "configs/routes";
+import routes, { paths } from "configs/routes";
 
 const authRoutes = routes.filter((route) =>
   [RouteTypes.Both, RouteTypes.AnonymousOnly].includes(route.type)
@@ -18,6 +18,7 @@ const AuthRoutes: FC = () => {
           element={<route.component />}
         />
       ))}
+      <Route path="*" element={<Navigate replace to={paths.login} />} />
     </Routes>
   );
 };
