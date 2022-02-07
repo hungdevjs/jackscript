@@ -1,7 +1,17 @@
 import { FC, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Box, Typography, createStyles, Theme } from "@mui/material";
+import {
+  Box,
+  Typography,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  SelectChangeEvent,
+  createStyles,
+  Theme,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { School, Map, QuestionAnswer, Search } from "@mui/icons-material";
 
@@ -10,14 +20,10 @@ import { paths } from "configs/routes";
 import colors from "utils/colors";
 
 import { selectUser } from "redux/authSlice";
-
-const routes = [
-  { name: "Courses", path: paths.courses, icon: School },
-  { name: "Roadmap", path: paths.roadmap, icon: Map },
-  { name: "FAQs", path: paths.faq, icon: QuestionAnswer },
-];
+import useMultilanguage from "hooks/useMultilanguage";
 
 const Header: FC = () => {
+  const { language, translator, changeLanguage } = useMultilanguage();
   const user = useSelector(selectUser);
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -28,6 +34,12 @@ const Header: FC = () => {
   }, [search]);
 
   const styles = useStyles();
+
+  const routes = [
+    { name: translator.Header.Courses, path: paths.courses, icon: School },
+    { name: translator.Header.Roadmap, path: paths.roadmap, icon: Map },
+    { name: translator.Header.FAQs, path: paths.faq, icon: QuestionAnswer },
+  ];
 
   return (
     <Box
@@ -48,7 +60,7 @@ const Header: FC = () => {
         <Search color="primary" />
         <input
           className={styles.input}
-          placeholder="Type to search"
+          placeholder={translator.Header.TypeToSearch}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -74,6 +86,23 @@ const Header: FC = () => {
           Register
         </Typography>
       )}
+      <Box sx={{ minWidth: 120 }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">
+            {translator.Header.Language}
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={language}
+            label={translator.Header.Language}
+            onChange={(e) => changeLanguage(e.target.value)}
+          >
+            <MenuItem value="en">{translator.Header.English}</MenuItem>
+            <MenuItem value="vi">{translator.Header.Vietnamese}</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
     </Box>
   );
 };
