@@ -17,7 +17,7 @@ const languageSlice = createSlice({
         state.language = action.payload;
       },
       prepare: (payload: "en" | "vi"): any => {
-        return { payload: payload ?? "en" };
+        return { payload };
       },
     },
   },

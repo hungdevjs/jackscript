@@ -1,9 +1,12 @@
 {
   "Header": {
     "TypeToSearch": "Type to search",
+    "Profile": "Profile",
     "Courses": "Courses",
     "Roadmap": "Roadmap",
     "FAQs": "FAQs",
+    "Login": "Login",
+    "Register": "Register",
     "Language": "Language",
     "English": "English",
     "Vietnamese": "Vietnamese"

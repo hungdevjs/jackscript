@@ -17,8 +17,8 @@ const App = () => {
   const user = useSelector(selectUser);
 
   const getUser = useCallback(async () => {
-    // dispatch(setUser())
-    dispatch(setUser({ email: "hungdev.js@gmail.com", username: "hungdevjs" }));
+    dispatch(setUser(null));
+    // dispatch(setUser({ email: "hungdev.js@gmail.com", username: "hungdevjs" }));
   }, [dispatch]);
 
   useEffect(() => {

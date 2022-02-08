@@ -18,8 +18,8 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.initialized = true;
       },
-      prepare: (payload: User | undefined): any => {
-        return { payload: payload ?? null };
+      prepare: (payload: User | null): any => {
+        return { payload };
       },
     },
   },
