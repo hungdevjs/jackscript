@@ -10,19 +10,36 @@ import AuthRoutes from "navigations/AuthRoutes";
 import MainRoutes from "navigations/MainRoutes";
 
 import { selectInitialized, selectUser, setUser } from "redux/authSlice";
+import { getTipThunk } from "redux/tipSlice";
+import { getAccessToken } from "utils/helpers";
+import { getInfo } from "services/account.service";
+import { ACCESS_TOKEN } from "utils/constants";
 
 const App = () => {
   const dispatch = useDispatch();
   const initialized = useSelector(selectInitialized);
   const user = useSelector(selectUser);
 
-  const getUser = useCallback(async () => {
-    dispatch(setUser(null));
+  const getAuth = useCallback(async () => {
+    try {
+      const token = getAccessToken();
+      if (!token) throw new Error();
+      const res = await getInfo();
+      dispatch(setUser(res.data));
+    } catch {
+      dispatch(setUser(null));
+      localStorage.removeItem(ACCESS_TOKEN);
+    }
+  }, [dispatch]);
+
+  const init = useCallback(async () => {
+    dispatch(getTipThunk());
+    getAuth();
     // dispatch(setUser({ email: "hungdev.js@gmail.com", username: "hungdevjs" }));
   }, [dispatch]);
 
   useEffect(() => {
-    getUser();
+    init();
   }, []);
 
   if (!initialized) return <Loading />;

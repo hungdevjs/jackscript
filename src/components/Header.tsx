@@ -78,7 +78,7 @@ const Header: FC = () => {
             </Box>
             <Box display="flex">
               {mainRoutes.map((route) => (
-                <Box mx={5}>
+                <Box mx={5} key={route.name}>
                   <Typography
                     className={styles.text}
                     style={pathname === route.path ? { color: colors.primary } : {}}
