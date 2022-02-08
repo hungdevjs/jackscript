@@ -10,5 +10,15 @@
     "Language": "Ngôn ngữ",
     "English": "Tiếng Anh",
     "Vietnamese": "Tiếng Việt"
+  },
+  "Login": {
+    "GetBetter": "TỐT HƠN MỘT CHÚT MỖI NGÀY",
+    "WelcomeBack": "Chào mừng trở lại!",
+    "Email": "Email",
+    "Password": "Mật khẩu",
+    "EmailInvalid": "Email không hợp lệ",
+    "EmailEmpty": "Email trống",
+    "PasswordEmpty": "Password trống",
+    "PasswordLengthInvalid": "Password phải chứa ít nhất 8 ký tự"
   }
 }

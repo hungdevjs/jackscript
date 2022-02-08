@@ -45,9 +45,11 @@ const App = () => {
   if (!initialized) return <Loading />;
 
   return (
-    <Box>
+    <Box display="flex" flexDirection="column" minHeight="100vh">
       <Header />
-      {user ? <MainRoutes /> : <AuthRoutes />}
+      <Box flexGrow={1} display="flex" flexDirection="column">
+        {user ? <MainRoutes /> : <AuthRoutes />}
+      </Box>
     </Box>
   );
 };

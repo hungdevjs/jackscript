@@ -10,5 +10,15 @@
     "Language": "Language",
     "English": "English",
     "Vietnamese": "Vietnamese"
+  },
+  "Login": {
+    "GetBetter": "GET BETTER DAY BY DAY",
+    "WelcomeBack": "Hello again!",
+    "Email": "Email",
+    "Password": "Password",
+    "EmailInvalid": "Email is invalid",
+    "EmailEmpty": "Email is empty",
+    "PasswordEmpty": "Password is empty",
+    "PasswordLengthInvalid": "Password must contain at least 8 characters"
   }
 }
