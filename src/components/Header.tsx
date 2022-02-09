@@ -105,6 +105,7 @@ const Header: FC = () => {
                   id="demo-simple-select"
                   value={language}
                   label={translator.Header.Language}
+                  // @ts-ignore
                   onChange={(e) => changeLanguage(e.target.value)}>
                   <MenuItem value="en">{translator.Header.English}</MenuItem>
                   <MenuItem value="vi">{translator.Header.Vietnamese}</MenuItem>
