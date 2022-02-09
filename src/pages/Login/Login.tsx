@@ -86,7 +86,7 @@ const Login: FC = () => {
                     </Box>
                     <Box mb={2}>
                       <Typography variant="h6" color={colors.white} align="center">
-                        {tip.title}
+                        {language === "vi" ? tip.titleVi : tip.titleEn}
                       </Typography>
                     </Box>
                     <Box mb={2}>

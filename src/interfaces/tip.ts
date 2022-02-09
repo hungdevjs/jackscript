@@ -1,6 +1,7 @@
 export interface TipState {
   id: string;
-  title: string;
+  titleEn: string;
+  titleVi: string;
   image: string;
   bodyEn: string;
   bodyVi: string;
