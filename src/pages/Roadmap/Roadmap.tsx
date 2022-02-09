@@ -16,10 +16,12 @@ import { makeStyles } from "@mui/styles";
 
 import Loading from "components/Loading";
 import { selectRoadmap, getRoadmapThunk } from "redux/roadmapSlice";
+import useMultilanguage from "hooks/useMultilanguage";
 
 const Roadmap: FC = () => {
   const dispatch = useDispatch();
   const roadmaps = useSelector(selectRoadmap);
+  const { translator, language } = useMultilanguage();
   const styles = useStyles();
 
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -55,10 +57,10 @@ const Roadmap: FC = () => {
               <Box mt={2} display="flex" gap={3}>
                 {activeStep < roadmaps.length && (
                   <Button onClick={next} variant="contained">
-                    {activeStep === roadmaps.length - 1 ? "Finish" : "Continue"}
+                    {activeStep === roadmaps.length - 1 ? translator("Roadmap.Finish") : translator("Roadmap.Continue")}
                   </Button>
                 )}
-                {activeStep > 0 && <Button onClick={back}>Back</Button>}
+                {activeStep > 0 && <Button onClick={back}>{translator("Roadmap.Back")}</Button>}
               </Box>
             </StepContent>
           </Step>
@@ -66,9 +68,9 @@ const Roadmap: FC = () => {
       </Stepper>
       {activeStep === roadmaps.length && (
         <Box mt={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-          <Typography>All courses are finished.</Typography>
-          <Typography>Congrats new developer!</Typography>
-          <Button onClick={reset}>Reset</Button>
+          <Typography>{translator("Roadmap.AllCoursesFinished")}</Typography>
+          <Typography>{translator("Roadmap.CongratsNewDeveloper")}</Typography>
+          <Button onClick={reset}>{translator("Roadmap.Reset")}</Button>
         </Box>
       )}
     </Box>

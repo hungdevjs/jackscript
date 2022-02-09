@@ -20,5 +20,13 @@
     "EmailEmpty": "Email trống",
     "PasswordEmpty": "Password trống",
     "PasswordLengthInvalid": "Password phải chứa ít nhất 8 ký tự"
+  },
+  "Roadmap": {
+    "Continue": "Tiếp tục",
+    "Finish": "Hoàn thành",
+    "Back": "Quay lại",
+    "Reset": "Reset",
+    "AllCoursesFinished": "Hoàn thành.",
+    "CongratsNewDeveloper": "Xin chào 1 developer mới!"
   }
 }

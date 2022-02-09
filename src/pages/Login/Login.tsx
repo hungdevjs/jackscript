@@ -26,12 +26,12 @@ const Login: FC = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const validationSchema = yup.object({
-    email: yup.string().email(translator.Login.EmailInvalid).trim().required(translator.Login.EmailEmpty),
+    email: yup.string().email(translator("Login.EmailInvalid")).trim().required(translator("Login.EmailEmpty")),
     password: yup
       .string()
-      .required(translator.Login.PasswordEmpty)
+      .required(translator("Login.PasswordEmpty"))
       .trim()
-      .min(8, translator.Login.PasswordLengthInvalid),
+      .min(8, translator("Login.PasswordLengthInvalid")),
   });
 
   const initialValues = {
@@ -81,7 +81,7 @@ const Login: FC = () => {
                   <Box px={4} py={8}>
                     <Box mb={2}>
                       <Typography variant="h5" color={colors.white} align="center">
-                        {translator.Login.GetBetter}
+                        {translator("Login.GetBetter")}
                       </Typography>
                     </Box>
                     <Box mb={2}>
@@ -106,16 +106,16 @@ const Login: FC = () => {
                 </Box>
                 <Box mb={3}>
                   <Typography variant="h6" align="center">
-                    {translator.Login.WelcomeBack}
+                    {translator("Login.WelcomeBack")}
                   </Typography>
                 </Box>
                 <Box marginBottom={2}>
                   <TextField
                     fullWidth
-                    placeholder={translator.Login.Email}
+                    placeholder={translator("Login.Email")}
                     variant="outlined"
                     name="email"
-                    label={translator.Login.Email}
+                    label={translator("Login.Email")}
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur("email")}
@@ -127,10 +127,10 @@ const Login: FC = () => {
                   <TextField
                     fullWidth
                     type="password"
-                    placeholder={translator.Login.Password}
+                    placeholder={translator("Login.Password")}
                     variant="outlined"
                     name="password"
-                    label={translator.Login.Password}
+                    label={translator("Login.Password")}
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur("password")}

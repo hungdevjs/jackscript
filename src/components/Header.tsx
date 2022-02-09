@@ -42,17 +42,17 @@ const Header: FC = () => {
   const styles = useStyles();
 
   const routes = [
-    { name: translator.Header.Profile, path: paths.profile, isAuth: true },
-    { name: translator.Header.Courses, path: paths.courses },
-    { name: translator.Header.Roadmap, path: paths.roadmap },
-    { name: translator.Header.FAQs, path: paths.faq },
+    { name: translator("Header.Profile"), path: paths.profile, isAuth: true },
+    { name: translator("Header.Courses"), path: paths.courses },
+    { name: translator("Header.Roadmap"), path: paths.roadmap },
+    { name: translator("Header.FAQs"), path: paths.faq },
   ];
 
   const mainRoutes = routes.filter((item) => !item.isAuth || (user && item.isAuth));
 
   const authRoutes = [
-    { name: translator.Header.Login, path: paths.login },
-    { name: translator.Header.Register, path: paths.register },
+    { name: translator("Header.Login"), path: paths.login },
+    { name: translator("Header.Register"), path: paths.register },
   ];
 
   return (
@@ -71,7 +71,7 @@ const Header: FC = () => {
               <Search color="primary" />
               <input
                 className={styles.input}
-                placeholder={translator.Header.TypeToSearch}
+                placeholder={translator("Header.TypeToSearch")}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -99,16 +99,16 @@ const Header: FC = () => {
             )}
             <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">{translator.Header.Language}</InputLabel>
+                <InputLabel id="demo-simple-select-label">{translator("Header.Language")}</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={language}
-                  label={translator.Header.Language}
+                  label={translator("Header.Language")}
                   // @ts-ignore
                   onChange={(e) => changeLanguage(e.target.value)}>
-                  <MenuItem value="en">{translator.Header.English}</MenuItem>
-                  <MenuItem value="vi">{translator.Header.Vietnamese}</MenuItem>
+                  <MenuItem value="en">{translator("Header.English")}</MenuItem>
+                  <MenuItem value="vi">{translator("Header.Vietnamese")}</MenuItem>
                 </Select>
               </FormControl>
             </Box>

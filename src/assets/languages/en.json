@@ -20,5 +20,13 @@
     "EmailEmpty": "Email is empty",
     "PasswordEmpty": "Password is empty",
     "PasswordLengthInvalid": "Password must contain at least 8 characters"
+  },
+  "Roadmap": {
+    "Continue": "Continue",
+    "Finish": "Finish",
+    "Back": "Back",
+    "Reset": "Reset",
+    "AllCoursesFinished": "All courses are finished.",
+    "CongratsNewDeveloper": "Congrats new developer!"
   }
 }
