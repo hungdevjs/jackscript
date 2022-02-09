@@ -40,7 +40,7 @@ const Roadmap: FC = () => {
         {roadmaps.map((item) => (
           <Step key={item.id}>
             <StepLabel optional={item.level}>
-              <Box mb={2}>
+              <Box mb={1}>
                 <img src={item.image} width={80} />
               </Box>
             </StepLabel>
