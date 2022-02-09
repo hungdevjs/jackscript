@@ -10,7 +10,7 @@ import AuthRoutes from "navigations/AuthRoutes";
 import MainRoutes from "navigations/MainRoutes";
 
 import { selectInitialized, selectUser, setUser } from "redux/authSlice";
-import { getTipThunk } from "redux/tipSlice";
+import { getTip } from "redux/tipSlice";
 import { getAccessToken } from "utils/helpers";
 import { getInfo } from "services/account.service";
 import { ACCESS_TOKEN } from "utils/constants";
@@ -33,14 +33,13 @@ const App = () => {
   }, [dispatch]);
 
   const init = useCallback(async () => {
-    dispatch(getTipThunk());
+    dispatch(getTip());
     getAuth();
-    // dispatch(setUser({ email: "hungdev.js@gmail.com", username: "hungdevjs" }));
-  }, [dispatch]);
+  }, [dispatch, getAuth]);
 
   useEffect(() => {
     init();
-  }, []);
+  }, [init]);
 
   if (!initialized) return <Loading />;
 

@@ -64,7 +64,13 @@ const Header: FC = () => {
         paddingX={5}
         paddingY={2}
         borderBottom={`1px solid ${colors.secondary}`}>
-        <img src={Icons.jackscript} width={70} className={styles.logo} onClick={() => navigate(paths.home)} />
+        <img
+          src={Icons.jackscript}
+          alt="logo"
+          width={70}
+          className={styles.logo}
+          onClick={() => navigate(paths.home)}
+        />
         {!isLg ? (
           <>
             <Box display="flex" alignItems="center">

@@ -60,7 +60,7 @@ const Login: FC = () => {
 
       setSubmitting(false);
     },
-    [dispatch]
+    [dispatch, enqueueSnackbar]
   );
 
   const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, setSubmitting } = useFormik({
@@ -90,7 +90,7 @@ const Login: FC = () => {
                       </Typography>
                     </Box>
                     <Box mb={2}>
-                      <img src={tip.image} className={styles.tipImage} />
+                      <img src={tip.image} className={styles.tipImage} alt="tip" />
                     </Box>
                     <Typography color={colors.white} align="center">
                       {language === "vi" ? tip.bodyVi : tip.bodyEn}
@@ -102,7 +102,7 @@ const Login: FC = () => {
             <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
               <Box px={4} py={8}>
                 <Box display="flex" justifyContent="center" mb={2}>
-                  <img src={Icons.jackscript} width={120} />
+                  <img src={Icons.jackscript} width={120} alt="logo" />
                 </Box>
                 <Box mb={3}>
                   <Typography variant="h6" align="center">

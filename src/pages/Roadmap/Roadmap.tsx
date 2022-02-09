@@ -15,13 +15,13 @@ import {
 import { makeStyles } from "@mui/styles";
 
 import Loading from "components/Loading";
-import { selectRoadmap, getRoadmapThunk } from "redux/roadmapSlice";
+import { selectRoadmap, getRoadmap } from "redux/roadmapSlice";
 import useMultilanguage from "hooks/useMultilanguage";
 
 const Roadmap: FC = () => {
   const dispatch = useDispatch();
   const roadmaps = useSelector(selectRoadmap);
-  const { translator, language } = useMultilanguage();
+  const { translator } = useMultilanguage();
   const styles = useStyles();
 
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -31,7 +31,7 @@ const Roadmap: FC = () => {
   const reset = useCallback(() => setActiveStep(0), []);
 
   useEffect(() => {
-    dispatch(getRoadmapThunk());
+    dispatch(getRoadmap());
   }, [dispatch]);
 
   if (!roadmaps) return <Loading />;
@@ -43,7 +43,7 @@ const Roadmap: FC = () => {
           <Step key={item.id}>
             <StepLabel optional={item.level}>
               <Box mb={1}>
-                <img src={item.image} width={80} />
+                <img src={item.image} width={80} alt="step" />
               </Box>
             </StepLabel>
             <StepContent>

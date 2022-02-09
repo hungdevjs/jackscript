@@ -23,14 +23,14 @@ const useMultilanguage = () => {
 
       dispatch(setLanguage(lang));
     },
-    [language]
+    [language, dispatch]
   );
 
   const translator = useCallback((key: string) => get(file, key, key), [file]);
 
   useEffect(() => {
     getFile();
-  }, [language]);
+  }, [language, getFile]);
 
   return { language, translator, changeLanguage };
 };
