@@ -42,13 +42,10 @@ const Header: FC = () => {
   const styles = useStyles();
 
   const routes = [
-    { name: translator("Header.Profile"), path: paths.profile, isAuth: true },
     { name: translator("Header.Courses"), path: paths.courses },
     { name: translator("Header.Roadmap"), path: paths.roadmap },
     { name: translator("Header.FAQs"), path: paths.faq },
   ];
-
-  const mainRoutes = routes.filter((item) => !item.isAuth || (user && item.isAuth));
 
   const authRoutes = [
     { name: translator("Header.Login"), path: paths.login },
@@ -83,7 +80,7 @@ const Header: FC = () => {
               />
             </Box>
             <Box display="flex">
-              {mainRoutes.map((route) => (
+              {routes.map((route) => (
                 <Box mx={5} key={route.name}>
                   <Typography
                     className={styles.text}
@@ -130,7 +127,7 @@ const Header: FC = () => {
       {isLg && (
         <Collapse in={isOpen} timeout="auto" unmountOnExit>
           <Box display="flex" flexDirection="column" alignItems="center" borderBottom={`1px solid ${colors.secondary}`}>
-            {[...mainRoutes, ...(!user ? authRoutes : [])].map((route) => (
+            {[...routes, ...(!user ? authRoutes : [])].map((route) => (
               <Box key={route.name} paddingY={2}>
                 <Typography
                   className={styles.text}

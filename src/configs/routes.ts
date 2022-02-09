@@ -4,7 +4,6 @@ import Home from "pages/Home/Home";
 import Roadmap from "pages/Roadmap/Roadmap";
 import Courses from "pages/Courses/Courses";
 import Faq from "pages/Faq/Faq";
-import Profile from "pages/Profile/Profile";
 import Login from "pages/Login/Login";
 import Register from "pages/Register/Register";
 
@@ -13,7 +12,6 @@ export const paths = {
   roadmap: "/roadmap",
   courses: "/courses",
   faq: "/faq",
-  profile: "/me",
   login: "/login",
   register: "/register",
 };
@@ -42,12 +40,6 @@ const routes: Route[] = [
     path: paths.faq,
     component: Faq,
     type: RouteTypes.Both,
-  },
-  {
-    name: "Profile",
-    path: paths.profile,
-    component: Profile,
-    type: RouteTypes.AuthUserOnly,
   },
   {
     name: "Login",
