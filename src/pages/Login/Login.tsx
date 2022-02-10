@@ -4,17 +4,17 @@ import { Box, Grid, TextField, Button, createStyles, Theme, useTheme, useMediaQu
 import { makeStyles } from "@mui/styles";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useSnackbar } from "notistack";
 
 import Loading from "components/Loading";
 
 import Icons from "assets/Icons";
 import useMultilanguage from "hooks/useMultilanguage";
 import colors from "utils/colors";
+import { ACCESS_TOKEN } from "utils/constants";
 import { selectTip } from "redux/tipSlice";
 import { logIn } from "services/account.service";
 import { setUser } from "redux/authSlice";
-import { ACCESS_TOKEN } from "utils/constants";
+import useAlert from "hooks/useAlert";
 
 const Login: FC = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const Login: FC = () => {
   const isLg = useMediaQuery(theme.breakpoints.down("lg"));
   const { translator, language } = useMultilanguage();
   const tip = useSelector(selectTip);
-  const { enqueueSnackbar } = useSnackbar();
+  const { alert } = useAlert();
 
   const validationSchema = yup.object({
     email: yup.string().email(translator("Login.EmailInvalid")).trim().required(translator("Login.EmailEmpty")),
@@ -49,18 +49,12 @@ const Login: FC = () => {
         localStorage.setItem(ACCESS_TOKEN, accessToken);
         dispatch(setUser(data));
       } catch (err: any) {
-        enqueueSnackbar(err.response?.data || err.message, {
-          variant: "error",
-          anchorOrigin: {
-            vertical: "top",
-            horizontal: "right",
-          },
-        });
+        alert(err.response?.data || err.message, "error");
       }
 
       setSubmitting(false);
     },
-    [dispatch, enqueueSnackbar]
+    [dispatch, alert]
   );
 
   const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, setSubmitting } = useFormik({

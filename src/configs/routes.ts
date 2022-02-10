@@ -4,6 +4,7 @@ import Home from "pages/Home/Home";
 import Roadmap from "pages/Roadmap/Roadmap";
 import Courses from "pages/Courses/Courses";
 import CourseDetail from "pages/Courses/CourseDetail";
+import Lesson from "pages/Courses/Lesson";
 import Faq from "pages/Faq/Faq";
 import Login from "pages/Login/Login";
 import Register from "pages/Register/Register";
@@ -13,6 +14,7 @@ export const paths = {
   roadmap: "/roadmap",
   courses: "/courses",
   courseDetail: "/courses/:id",
+  lesson: "/courses/:courseId/lessons/:lessonId",
   faq: "/faq",
   login: "/login",
   register: "/register",
@@ -41,6 +43,12 @@ const routes: Route[] = [
     name: "CourseDetail",
     path: paths.courseDetail,
     component: CourseDetail,
+    type: RouteTypes.Both,
+  },
+  {
+    name: "Lesson",
+    path: paths.lesson,
+    component: Lesson,
     type: RouteTypes.Both,
   },
   {

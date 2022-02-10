@@ -32,6 +32,10 @@
     "Courses": "Courses",
     "CoursesPublished": "Published {{count}} courses",
     "lessons": "lessons",
-    "Start": "Start"
+    "Start": "Start",
+    "YourExamURL": "Your exam URL",
+    "ExamURLEmpty": "Exam URL is empty",
+    "Exam": "Exam",
+    "NextLesson": "Next lesson"
   }
 }

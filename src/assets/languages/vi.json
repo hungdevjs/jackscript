@@ -32,6 +32,10 @@
     "Courses": "Khóa học",
     "CoursesPublished": "Đã xuất bản {{count}} khóa học",
     "lessons": "bài học",
-    "Start": "Bắt đầu"
+    "Start": "Bắt đầu",
+    "YourExamURL": "URL bài tập của bạn",
+    "ExamURLEmpty": "URL bài tập trống",
+    "Exam": "Bài tập",
+    "NextLesson": "Bài giảng tiếp theo"
   }
 }

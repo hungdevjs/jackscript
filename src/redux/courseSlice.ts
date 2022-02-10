@@ -3,10 +3,14 @@ import { createSlice, Reducer, createAsyncThunk, createSelector } from "@reduxjs
 import { CourseState } from "interfaces/course";
 import { RootState } from "./store";
 
-import { get } from "../services/course.service";
+import { get, getById, start, getLesson } from "../services/course.service";
 
 const initialState: CourseState = {
   items: null,
+  courseDetailInitialized: false,
+  courseDetail: null,
+  lessonDetailInitialized: false,
+  lessonDetail: null,
 };
 
 export const getCourses = createAsyncThunk<any>("course/get", async () => {
@@ -14,23 +18,73 @@ export const getCourses = createAsyncThunk<any>("course/get", async () => {
   return res.data;
 });
 
+// @ts-ignore
+export const getCourseById = createAsyncThunk<any>("course/getById", async (id: string, thunkAPI) => {
+  const state = thunkAPI.getState() as RootState;
+  const { user } = state.auth;
+
+  if (!user) return null;
+  await start(id);
+  const res = await getById(id);
+  return res.data;
+});
+
+export const getLessonById = createAsyncThunk<any>(
+  "course/getLesson",
+  // @ts-ignore
+  async ({ lessonId, courseId }: { lessonId: string; courseId: string }, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    const { user } = state.auth;
+    if (!user) return null;
+
+    const res = await getLesson(courseId, lessonId);
+    return res.data;
+  }
+);
+
 const courseSlice = createSlice({
   name: "course",
   initialState,
   reducers: {
     reset: () => initialState,
+    resetCourseDetail: (state: CourseState) => {
+      state.courseDetail = null;
+      state.courseDetailInitialized = false;
+    },
+    resetLessonDetail: (state: CourseState) => {
+      state.lessonDetail = null;
+      state.lessonDetailInitialized = false;
+    },
   },
   extraReducers: {
-    //@ts-ignore
+    // @ts-ignore
     [getCourses.fulfilled]: (state: CourseState, { payload }: any) => {
       state.items = payload;
+    },
+    // @ts-ignore
+    [getCourseById.fulfilled]: (state: CourseState, { payload }: any) => {
+      state.courseDetail = payload;
+      state.courseDetailInitialized = true;
+    },
+    // @ts-ignore
+    [getLessonById.fulfilled]: (state: CourseState, { payload }: any) => {
+      state.lessonDetail = payload;
+      state.lessonDetailInitialized = true;
     },
   },
 });
 
-export const { reset } = courseSlice.actions;
+export const { reset, resetCourseDetail, resetLessonDetail } = courseSlice.actions;
 
 export const selectCourses = (state: RootState) => state.course.items || [];
+export const selectCourseDetail = (state: RootState) => ({
+  detailInitialized: state.course.courseDetailInitialized,
+  detail: state.course.courseDetail,
+});
+export const selectLessonDetail = (state: RootState) => ({
+  detailInitialized: state.course.lessonDetailInitialized,
+  detail: state.course.lessonDetail,
+});
 
 export const selectSortedCourses = createSelector([selectCourses], (courses) => {
   const newbieCourses = courses.filter((course) => course.level === "NEWBIE");
