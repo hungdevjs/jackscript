@@ -10,7 +10,7 @@ interface RoadmapItem {
     name: string;
     descriptionEn: string;
     descriptionVi: string;
-    level: String;
+    level: string;
   }[];
 }
 
