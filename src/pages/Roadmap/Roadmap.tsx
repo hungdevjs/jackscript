@@ -1,4 +1,5 @@
 import { FC, useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Box,
@@ -17,8 +18,10 @@ import { makeStyles } from "@mui/styles";
 import Loading from "components/Loading";
 import { selectRoadmap, getRoadmap } from "redux/roadmapSlice";
 import useMultilanguage from "hooks/useMultilanguage";
+import { paths } from "configs/routes";
 
 const Roadmap: FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const roadmaps = useSelector(selectRoadmap);
   const { translator } = useMultilanguage();
@@ -29,6 +32,13 @@ const Roadmap: FC = () => {
   const back = useCallback(() => setActiveStep(activeStep - 1), [activeStep]);
   const next = useCallback(() => setActiveStep(activeStep + 1), [activeStep]);
   const reset = useCallback(() => setActiveStep(0), []);
+
+  const goToCourse = useCallback(
+    (id: string) => {
+      navigate(paths.courseDetail.replace(":id", id));
+    },
+    [navigate]
+  );
 
   useEffect(() => {
     dispatch(getRoadmap());
@@ -49,7 +59,12 @@ const Roadmap: FC = () => {
             <StepContent>
               <Stack spacing={2}>
                 {item.courses.map((course) => (
-                  <Paper key={course.id} elevation={4} className={styles.courseItem}>
+                  <Paper
+                    key={course.id}
+                    elevation={4}
+                    className={styles.courseItem}
+                    onClick={() => goToCourse(course.id)}
+                  >
                     <Box p={2}>{course.name}</Box>
                   </Paper>
                 ))}

@@ -1,11 +1,13 @@
-import { FC, useEffect } from "react";
+import { FC, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography, Grid, Button, Paper } from "@mui/material";
 
 import Loading from "components/Loading";
 import { getCourses, selectSortedCourses } from "redux/courseSlice";
 import useMultilanguage from "hooks/useMultilanguage";
 import colors from "utils/colors";
+import { paths } from "configs/routes";
 
 const cardColors = {
   NEWBIE: "#fbd95d",
@@ -15,6 +17,7 @@ const cardColors = {
 };
 
 const Courses: FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const courses = useSelector(selectSortedCourses);
   const { language, translator } = useMultilanguage();
@@ -22,6 +25,13 @@ const Courses: FC = () => {
   useEffect(() => {
     dispatch(getCourses());
   }, [dispatch]);
+
+  const goToCourse = useCallback(
+    (id: string) => {
+      navigate(paths.courseDetail.replace(":id", id));
+    },
+    [navigate]
+  );
 
   if (!courses) return <Loading />;
 
@@ -64,7 +74,7 @@ const Courses: FC = () => {
                     </Box>
                   </Box>
                   <Box p={2} display="flex" justifyContent="space-between" alignItems="flex-end">
-                    <Button variant="contained">
+                    <Button variant="contained" onClick={() => goToCourse(course.id)}>
                       <Typography fontWeight="bold">{translator("Course.Start")}</Typography>
                     </Button>
                     <img src={course.image} alt="course" />

@@ -3,6 +3,7 @@ import { Route, RouteTypes } from "interfaces/route";
 import Home from "pages/Home/Home";
 import Roadmap from "pages/Roadmap/Roadmap";
 import Courses from "pages/Courses/Courses";
+import CourseDetail from "pages/Courses/CourseDetail";
 import Faq from "pages/Faq/Faq";
 import Login from "pages/Login/Login";
 import Register from "pages/Register/Register";
@@ -11,6 +12,7 @@ export const paths = {
   home: "/",
   roadmap: "/roadmap",
   courses: "/courses",
+  courseDetail: "/courses/:id",
   faq: "/faq",
   login: "/login",
   register: "/register",
@@ -33,6 +35,12 @@ const routes: Route[] = [
     name: "Courses",
     path: paths.courses,
     component: Courses,
+    type: RouteTypes.Both,
+  },
+  {
+    name: "CourseDetail",
+    path: paths.courseDetail,
+    component: CourseDetail,
     type: RouteTypes.Both,
   },
   {
