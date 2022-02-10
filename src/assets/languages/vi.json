@@ -27,5 +27,11 @@
     "Reset": "Reset",
     "AllCoursesFinished": "Hoàn thành.",
     "CongratsNewDeveloper": "Xin chào 1 developer mới!"
+  },
+  "Course": {
+    "Courses": "Khóa học",
+    "CoursesPublished": "Đã xuất bản {{count}} khóa học",
+    "lessons": "bài học",
+    "Start": "Bắt đầu"
   }
 }

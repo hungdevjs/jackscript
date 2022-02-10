@@ -27,9 +27,9 @@ const Courses: FC = () => {
 
   return (
     <Box p={4}>
-      <Typography variant="h5">Courses</Typography>
+      <Typography variant="h5">{translator("Course.Courses")}</Typography>
       <Typography color={colors.dark} fontSize="0.9rem">
-        Published {courses.length} courses
+        {translator("Course.CoursesPublished", { count: courses.length })}
       </Typography>
       <Box mt={4}>
         <Grid container spacing={3}>
@@ -55,7 +55,7 @@ const Courses: FC = () => {
                       {course.name}
                     </Typography>
                     <Typography fontSize="0.9rem" color={colors.white}>
-                      {course.numberOfLessons} lessons
+                      {course.numberOfLessons} {translator("Course.lessons")}
                     </Typography>
                     <Box pt={3}>
                       <Typography color={colors.white} fontWeight="bold">
@@ -65,7 +65,7 @@ const Courses: FC = () => {
                   </Box>
                   <Box p={2} display="flex" justifyContent="space-between" alignItems="flex-end">
                     <Button variant="contained">
-                      <Typography fontWeight="bold">Start</Typography>
+                      <Typography fontWeight="bold">{translator("Course.Start")}</Typography>
                     </Button>
                     <img src={course.image} alt="course" />
                   </Box>

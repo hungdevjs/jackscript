@@ -27,5 +27,11 @@
     "Reset": "Reset",
     "AllCoursesFinished": "All courses are finished.",
     "CongratsNewDeveloper": "Congrats new developer!"
+  },
+  "Course": {
+    "Courses": "Courses",
+    "CoursesPublished": "Published {{count}} courses",
+    "lessons": "lessons",
+    "Start": "Start"
   }
 }

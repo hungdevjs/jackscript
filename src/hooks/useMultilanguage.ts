@@ -26,7 +26,20 @@ const useMultilanguage = () => {
     [language, dispatch]
   );
 
-  const translator = useCallback((key: string) => get(file, key, key), [file]);
+  const translator = useCallback(
+    (key: string, args?: object) => {
+      let string = get(file, key, key);
+      if (args) {
+        for (const k of Object.keys(args)) {
+          // @ts-ignore
+          string = string.replaceAll(`{{${k}}}`, args[k]);
+        }
+      }
+
+      return string;
+    },
+    [file]
+  );
 
   useEffect(() => {
     getFile();
