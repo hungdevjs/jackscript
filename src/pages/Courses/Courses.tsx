@@ -6,15 +6,8 @@ import { Box, Typography, Grid, Button, Paper } from "@mui/material";
 import Loading from "components/Loading";
 import { getCourses, selectSortedCourses } from "redux/courseSlice";
 import useMultilanguage from "hooks/useMultilanguage";
-import colors from "utils/colors";
+import colors, { cardColors } from "utils/colors";
 import { paths } from "configs/routes";
-
-const cardColors = {
-  NEWBIE: "#fbd95d",
-  FRESHER: "#e7577d",
-  JUNIOR: "#ab7ff8",
-  SENIOR: "#77aff5",
-};
 
 const Courses: FC = () => {
   const navigate = useNavigate();

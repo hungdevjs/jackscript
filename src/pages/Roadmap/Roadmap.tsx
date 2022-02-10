@@ -19,6 +19,7 @@ import Loading from "components/Loading";
 import { selectRoadmap, getRoadmap } from "redux/roadmapSlice";
 import useMultilanguage from "hooks/useMultilanguage";
 import { paths } from "configs/routes";
+import colors, { cardColors } from "utils/colors";
 
 const Roadmap: FC = () => {
   const navigate = useNavigate();
@@ -63,9 +64,15 @@ const Roadmap: FC = () => {
                     key={course.id}
                     elevation={4}
                     className={styles.courseItem}
+                    // @ts-ignore
+                    style={{ backgroundColor: cardColors[course.level] }}
                     onClick={() => goToCourse(course.id)}
                   >
-                    <Box p={2}>{course.name}</Box>
+                    <Box p={2}>
+                      <Typography color={colors.white} fontWeight="bold">
+                        {course.name}
+                      </Typography>
+                    </Box>
                   </Paper>
                 ))}
               </Stack>
