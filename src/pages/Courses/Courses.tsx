@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Box, Typography, Grid, Button, Paper } from "@mui/material";
 
 import Loading from "components/Loading";
-import { getCourses, selectCourses } from "redux/courseSlice";
+import { getCourses, selectSortedCourses } from "redux/courseSlice";
 import useMultilanguage from "hooks/useMultilanguage";
 import colors from "utils/colors";
 
@@ -16,7 +16,7 @@ const cardColors = {
 
 const Courses: FC = () => {
   const dispatch = useDispatch();
-  const courses = useSelector(selectCourses);
+  const courses = useSelector(selectSortedCourses);
   const { language, translator } = useMultilanguage();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Courses: FC = () => {
       <Box mt={4}>
         <Grid container spacing={3}>
           {courses.map((course) => (
-            <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
+            <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={course.id}>
               <Paper
                 elevation={4}
                 style={{

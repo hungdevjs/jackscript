@@ -1,4 +1,4 @@
-import { createSlice, Reducer, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, Reducer, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 
 import { CourseState } from "interfaces/course";
 import { RootState } from "./store";
@@ -30,6 +30,15 @@ const courseSlice = createSlice({
 
 export const { reset } = courseSlice.actions;
 
-export const selectCourses = (state: RootState) => state.course.items;
+export const selectCourses = (state: RootState) => state.course.items || [];
+
+export const selectSortedCourses = createSelector([selectCourses], (courses) => {
+  const newbieCourses = courses.filter((course) => course.level === "NEWBIE");
+  const fresherCourses = courses.filter((course) => course.level === "FRESHER");
+  const juniorCourses = courses.filter((course) => course.level === "JUNIOR");
+  const seniorCourses = courses.filter((course) => course.level === "SENIOR");
+
+  return [...newbieCourses, ...fresherCourses, ...juniorCourses, ...seniorCourses];
+});
 
 export default courseSlice.reducer as Reducer;
