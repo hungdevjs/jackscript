@@ -4,15 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { Box, Typography, Grid, Button, Paper } from "@mui/material";
 
 import Loading from "components/Loading";
+import { selectUser } from "redux/authSlice";
 import { getCourses, selectSortedCourses } from "redux/courseSlice";
 import useMultilanguage from "hooks/useMultilanguage";
 import colors, { cardColors } from "utils/colors";
 import { paths } from "configs/routes";
+import { canStartCourse, isContinueCourse } from "./utils/helpers";
 
 const Courses: FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const courses = useSelector(selectSortedCourses);
+  const user = useSelector(selectUser);
   const { language, translator } = useMultilanguage();
 
   useEffect(() => {
@@ -67,8 +70,14 @@ const Courses: FC = () => {
                     </Box>
                   </Box>
                   <Box p={2} display="flex" justifyContent="space-between" alignItems="flex-end">
-                    <Button variant="contained" onClick={() => goToCourse(course.id)}>
-                      <Typography fontWeight="bold">{translator("Course.Start")}</Typography>
+                    <Button
+                      variant="contained"
+                      onClick={() => goToCourse(course.id)}
+                      disabled={!canStartCourse(user, course.level)}
+                    >
+                      <Typography fontWeight="bold">
+                        {translator(isContinueCourse(user, course.id) ? "Course.Continue" : "Course.Start")}
+                      </Typography>
                     </Button>
                     <img src={course.image} alt="course" />
                   </Box>

@@ -6,15 +6,18 @@ import { makeStyles } from "@mui/styles";
 
 import Loading from "components/Loading";
 import NoAccessible from "./components/NoAccessible";
+import { selectUser } from "redux/authSlice";
 import { getCourseById, selectCourseDetail, resetCourseDetail } from "redux/courseSlice";
 import useMultilanguage from "hooks/useMultilanguage";
 import colors from "utils/colors";
 import { paths } from "configs/routes";
+import { isLearned } from "./utils/helpers";
 
 const CourseDetail: FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams<{ id: string }>();
+  const user = useSelector(selectUser);
   const { detail, detailInitialized } = useSelector(selectCourseDetail);
   const { language, translator } = useMultilanguage();
   const styles = useStyles();
@@ -64,7 +67,12 @@ const CourseDetail: FC = () => {
       <Grid container spacing={2}>
         {detail.lessons.map((lesson) => (
           <Grid item xs={12} sm={12} md={6} lg={4} xl={3} key={lesson.id}>
-            <Paper elevation={3} className={styles.lessonItem} onClick={() => goToLesson(lesson.id)}>
+            <Paper
+              elevation={3}
+              className={styles.lessonItem}
+              style={{ backgroundColor: isLearned(user, id as string, lesson.order) ? colors.primary : colors.white }}
+              onClick={() => goToLesson(lesson.id)}
+            >
               <Box padding={2}>
                 <Typography>{language === "vi" ? lesson.nameVi : lesson.nameEn}</Typography>
               </Box>

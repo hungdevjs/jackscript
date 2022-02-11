@@ -67,8 +67,16 @@ const courseSlice = createSlice({
       state.courseDetailInitialized = true;
     },
     // @ts-ignore
+    [getCourseById.rejected]: (state: CourseState, { payload }: any) => {
+      state.courseDetailInitialized = true;
+    },
+    // @ts-ignore
     [getLessonById.fulfilled]: (state: CourseState, { payload }: any) => {
       state.lessonDetail = payload;
+      state.lessonDetailInitialized = true;
+    },
+    // @ts-ignore
+    [getLessonById.rejected]: (state: CourseState, { payload }: any) => {
       state.lessonDetailInitialized = true;
     },
   },
