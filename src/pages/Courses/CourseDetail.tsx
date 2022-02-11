@@ -1,10 +1,11 @@
 import { FC, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { Box, Grid, Paper, Typography, createStyles } from "@mui/material";
+import { Box, Grid, Paper, Typography, Button, createStyles } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 import Loading from "components/Loading";
+import NoAccessible from "./components/NoAccessible";
 import { getCourseById, selectCourseDetail, resetCourseDetail } from "redux/courseSlice";
 import useMultilanguage from "hooks/useMultilanguage";
 import colors from "utils/colors";
@@ -25,6 +26,10 @@ const CourseDetail: FC = () => {
     [navigate, id]
   );
 
+  const backToCourseList = useCallback(() => {
+    navigate(paths.courses);
+  }, [navigate]);
+
   useEffect(() => {
     dispatch(getCourseById(id));
     return () => {
@@ -34,7 +39,16 @@ const CourseDetail: FC = () => {
 
   if (!detailInitialized) return <Loading />;
 
-  if (!detail) return <Typography>Youre not able to view this course</Typography>;
+  if (!detail)
+    return (
+      <Box flexGrow={1} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+        <NoAccessible
+          text={translator("Course.NoAccessCourse")}
+          suggestion={translator("Course.PleaseLogInAndReachLevel")}
+        />
+        <Button onClick={backToCourseList}>{translator("Course.BackToCourseList")}</Button>
+      </Box>
+    );
 
   return (
     <Box p={4}>

@@ -36,6 +36,12 @@
     "YourExamURL": "Your exam URL",
     "ExamURLEmpty": "Exam URL is empty",
     "Exam": "Exam",
-    "NextLesson": "Next lesson"
+    "NextLesson": "Next lesson",
+    "NoAccessCourse": "Sorry you cannot access to this course",
+    "PleaseLogInAndReachLevel": "Please ensure that you have already logged in and reached this course's level",
+    "BackToCourseList": "Back to course list",
+    "NoAccessLesson": "Sorry you cannot access to this lesson",
+    "PleaseStartCourseAndLearnLesson": "Please start the course and learn lessons sequentially",
+    "BackToCourse": "Back to course"
   }
 }

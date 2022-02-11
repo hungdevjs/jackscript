@@ -1,16 +1,19 @@
 import { FC, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 import Loading from "components/Loading";
+import NoAccessible from "./components/NoAccessible";
 import { getLessonById, selectLessonDetail, resetLessonDetail } from "redux/courseSlice";
 import useMultilanguage from "hooks/useMultilanguage";
 import useAlert from "hooks/useAlert";
+import { paths } from "configs/routes";
 
 const Lesson: FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { courseId, lessonId } = useParams<{ courseId: string; lessonId: string }>();
   const { detail, detailInitialized } = useSelector(selectLessonDetail);
@@ -46,6 +49,10 @@ const Lesson: FC = () => {
     onSubmit,
   });
 
+  const backToCourse = useCallback(() => {
+    navigate(paths.courseDetail.replace(":id", courseId as string));
+  }, [navigate, courseId]);
+
   useEffect(() => {
     dispatch(getLessonById({ courseId, lessonId }));
     return () => {
@@ -55,7 +62,16 @@ const Lesson: FC = () => {
 
   if (!detailInitialized) return <Loading />;
 
-  if (!detail) return <Typography>Youre not able to view this lesson</Typography>;
+  if (!detail)
+    return (
+      <Box flexGrow={1} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+        <NoAccessible
+          text={translator("Course.NoAccessLesson")}
+          suggestion={translator("Course.PleaseStartCourseAndLearnLesson")}
+        />
+        <Button onClick={backToCourse}>{translator("Course.BackToCourse")}</Button>
+      </Box>
+    );
 
   return (
     <Box p={4}>

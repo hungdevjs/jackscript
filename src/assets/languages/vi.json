@@ -4,7 +4,7 @@
     "Courses": "Khóa học",
     "Roadmap": "Lộ trình học",
     "FAQs": "FAQs",
-    "Login": "Đang nhập",
+    "Login": "Đăng nhập",
     "Register": "Đăng ký",
     "Language": "Ngôn ngữ",
     "English": "Tiếng Anh",
@@ -36,6 +36,12 @@
     "YourExamURL": "URL bài tập của bạn",
     "ExamURLEmpty": "URL bài tập trống",
     "Exam": "Bài tập",
-    "NextLesson": "Bài giảng tiếp theo"
+    "NextLesson": "Bài giảng tiếp theo",
+    "NoAccessCourse": "Xin lỗi, bạn không có quyền xem nội dung khóa học này",
+    "PleaseLogInAndReachLevel": "Đảm bảo rằng bạn đã đăng nhập và có level cao hơn hoặc bằng level của khóa học này",
+    "BackToCourseList": "Danh sách khóa học",
+    "NoAccessLesson": "Xin lỗi, bạn không có quyền xem nội dung bài giảng này",
+    "PleaseStartCourseAndLearnLesson": "Hãy bắt đầu khóa học và học các bài giảng theo thứ tự",
+    "BackToCourse": "Quay lại"
   }
 }
