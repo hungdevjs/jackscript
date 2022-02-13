@@ -50,5 +50,11 @@
     "FAQ": "Frequently asked questions",
     "StillHaveAQuestion": "Still have a question?",
     "ContactUs": "If you cannot find answer to your question in our FAQs, you can always contact us. We will answer to you shortly!"
+  },
+  "Home": {
+    "Profile": "Profile",
+    "Progress": "Progress",
+    "Plan": "Plan",
+    "Settings": "Settings"
   }
 }

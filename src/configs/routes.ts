@@ -25,7 +25,7 @@ const routes: Route[] = [
     name: "Home",
     path: paths.home,
     component: Home,
-    type: RouteTypes.Both,
+    type: RouteTypes.AuthUserOnly,
   },
   {
     name: "Roadmap",

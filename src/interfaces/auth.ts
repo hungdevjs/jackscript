@@ -6,7 +6,7 @@ export interface UserCourse {
 export interface User {
   id: string;
   email: string;
-  username: string;
+  name: string;
   level: string;
   plan: string;
   courses: UserCourse[];

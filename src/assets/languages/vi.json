@@ -50,5 +50,11 @@
     "FAQ": "Câu hỏi thường gặp",
     "StillHaveAQuestion": "Bạn có câu hỏi khác?",
     "ContactUs": "Nếu bạn có câu hỏi khác, bạn có thể liên lạc với chúng tôi. Chúng tôi sẽ giải đáp mọi câu hỏi liên quan!"
+  },
+  "Home": {
+    "Profile": "Cá nhân",
+    "Progress": "Tiến trình",
+    "Plan": "Tài khoản",
+    "Settings": "Cài đặt"
   }
 }
