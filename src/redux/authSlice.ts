@@ -1,6 +1,6 @@
 import { createSlice, Reducer } from "@reduxjs/toolkit";
 
-import { AuthState, User } from "interfaces/auth";
+import { AuthState, User, UserCourse } from "interfaces/auth";
 import { RootState } from "./store";
 
 const initialState: AuthState = {
@@ -22,10 +22,26 @@ const authSlice = createSlice({
         return { payload };
       },
     },
+    updateLesson: {
+      reducer: (state, action) => {
+        const { courseId, lessonOrder } = action.payload;
+        const userCourses = state.user?.courses.map((item) => {
+          if (item.courseId === courseId) return { ...item, lessonOrder };
+          return item;
+        }) as UserCourse[];
+
+        if (state.user) {
+          state.user.courses = userCourses;
+        }
+      },
+      prepare: (payload: { courseId: string; lessonOrder: number }): any => {
+        return { payload };
+      },
+    },
   },
 });
 
-export const { reset, setUser } = authSlice.actions;
+export const { reset, setUser, updateLesson } = authSlice.actions;
 
 export const selectInitialized = (state: RootState) => state.auth.initialized;
 export const selectUser = (state: RootState) => state.auth.user;

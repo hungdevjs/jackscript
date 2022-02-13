@@ -10,3 +10,6 @@ export const start = (id: string) => api.post(`${COURSE_URL}/${id}`);
 
 export const getLesson = (courseId: string, lessonId: string) =>
   api.get(`${COURSE_URL}/${courseId}/lessons/${lessonId}`);
+
+export const submitLessonAnswer = (courseId: string, lessonId: string, data: { examUrl: string }) =>
+  api.post(`${COURSE_URL}/${courseId}/lessons/${lessonId}`, data);

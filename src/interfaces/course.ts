@@ -34,6 +34,8 @@ interface Lesson {
   examSrc: string;
   courseId: string;
   courseName: string;
+  examUrl?: string;
+  nextLessonId?: string;
 }
 
 export interface CourseState {

@@ -1,4 +1,4 @@
-interface UserCourse {
+export interface UserCourse {
   courseId: string;
   lessonOrder: number;
 }

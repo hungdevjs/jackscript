@@ -8,6 +8,8 @@ import * as yup from "yup";
 import Loading from "components/Loading";
 import NoAccessible from "./components/NoAccessible";
 import { getLessonById, selectLessonDetail, resetLessonDetail } from "redux/courseSlice";
+import { updateLesson } from "redux/authSlice";
+import { submitLessonAnswer } from "services/course.service";
 import useMultilanguage from "hooks/useMultilanguage";
 import useAlert from "hooks/useAlert";
 import { paths } from "configs/routes";
@@ -25,7 +27,7 @@ const Lesson: FC = () => {
   });
 
   const initialValues = {
-    examUrl: "",
+    examUrl: detail?.examUrl || "",
   };
 
   const onSubmit = useCallback(
@@ -33,18 +35,25 @@ const Lesson: FC = () => {
       setSubmitting(true);
 
       try {
-        console.log({ examUrl });
+        await submitLessonAnswer(courseId as string, lessonId as string, { examUrl });
+        dispatch(updateLesson({ courseId: courseId as string, lessonOrder: detail?.order as number }));
+        const nextUrl = detail?.nextLessonId
+          ? paths.lesson.replace(":courseId", courseId as string).replace(":lessonId", detail.nextLessonId)
+          : paths.courseDetail.replace(":id", courseId as string);
+
+        navigate(nextUrl);
       } catch (err: any) {
         alert(err.response?.data || err.message, "error");
       }
 
       setSubmitting(false);
     },
-    [dispatch, alert]
+    [dispatch, alert, navigate, detail, lessonId, courseId]
   );
 
   const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, setSubmitting } = useFormik({
     initialValues,
+    enableReinitialize: true,
     validationSchema,
     onSubmit,
   });
@@ -118,6 +127,7 @@ const Lesson: FC = () => {
                     onBlur={handleBlur("examUrl")}
                     error={touched.examUrl && !!errors.examUrl}
                     helperText={touched.examUrl && errors.examUrl}
+                    disabled={!!detail?.examUrl}
                   />
                 </Box>
                 <Button variant="contained" onClick={() => handleSubmit()}>
