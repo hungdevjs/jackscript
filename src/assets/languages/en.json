@@ -21,6 +21,7 @@
     "PasswordLengthInvalid": "Password must contain at least 8 characters"
   },
   "Roadmap": {
+    "Roadmap": "Roadmap",
     "Continue": "Continue",
     "Finish": "Finish",
     "Back": "Back",
@@ -44,5 +45,10 @@
     "NoAccessLesson": "Sorry you cannot access to this lesson",
     "PleaseStartCourseAndLearnLesson": "Please start the course and learn lessons sequentially",
     "BackToCourse": "Back to course"
+  },
+  "FAQs": {
+    "FAQ": "Frequently asked questions",
+    "StillHaveAQuestion": "Still have a question?",
+    "ContactUs": "If you cannot find answer to your question in our FAQs, you can always contact us. We will answer to you shortly!"
   }
 }

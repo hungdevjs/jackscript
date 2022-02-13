@@ -33,8 +33,10 @@ const Courses: FC = () => {
 
   return (
     <Box p={4}>
-      <Typography variant="h5">{translator("Course.Courses")}</Typography>
-      <Typography color={colors.dark} fontSize="0.9rem">
+      <Typography variant="h5" align="center">
+        {translator("Course.Courses")}
+      </Typography>
+      <Typography color={colors.dark} fontSize="0.9rem" align="center">
         {translator("Course.CoursesPublished", { count: courses.length })}
       </Typography>
       <Box mt={4}>

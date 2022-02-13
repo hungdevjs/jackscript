@@ -1,7 +1,7 @@
 import { createSlice, Reducer } from "@reduxjs/toolkit";
 
 import { LanguageState } from "interfaces/language";
-import { RootState } from "./store";
+import { RootState } from "interfaces/store";
 
 const initialState: LanguageState = {
   language: "en",

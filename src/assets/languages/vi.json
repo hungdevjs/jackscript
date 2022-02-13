@@ -21,6 +21,7 @@
     "PasswordLengthInvalid": "Password phải chứa ít nhất 8 ký tự"
   },
   "Roadmap": {
+    "Roadmap": "Lộ trình học",
     "Continue": "Tiếp tục",
     "Finish": "Hoàn thành",
     "Back": "Quay lại",
@@ -44,5 +45,10 @@
     "NoAccessLesson": "Xin lỗi, bạn không có quyền xem nội dung bài giảng này",
     "PleaseStartCourseAndLearnLesson": "Hãy bắt đầu khóa học và học các bài giảng theo thứ tự",
     "BackToCourse": "Quay lại"
+  },
+  "FAQs": {
+    "FAQ": "Câu hỏi thường gặp",
+    "StillHaveAQuestion": "Bạn có câu hỏi khác?",
+    "ContactUs": "Nếu bạn có câu hỏi khác, bạn có thể liên lạc với chúng tôi. Chúng tôi sẽ giải đáp mọi câu hỏi liên quan!"
   }
 }

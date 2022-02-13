@@ -48,7 +48,12 @@ const Roadmap: FC = () => {
   if (!roadmaps) return <Loading />;
 
   return (
-    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" my={5}>
+    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" py={4}>
+      <Box mb={3}>
+        <Typography variant="h5" align="center">
+          {translator("Roadmap.Roadmap")}
+        </Typography>
+      </Box>
       <Stepper activeStep={activeStep} orientation="vertical">
         {roadmaps.map((item) => (
           <Step key={item.id}>

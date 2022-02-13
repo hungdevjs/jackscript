@@ -1,7 +1,7 @@
 import { createSlice, Reducer, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { TipState } from "interfaces/tip";
-import { RootState } from "./store";
+import { RootState } from "interfaces/store";
 
 import { get } from "../services/tip.service";
 

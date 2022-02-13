@@ -4,6 +4,7 @@ import languageReducer from "./languageSlice";
 import tipSlice from "./tipSlice";
 import roadmapSlice from "./roadmapSlice";
 import courseSlice from "./courseSlice";
+import faqSlice from "./faqSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   tip: tipSlice,
   roadmap: roadmapSlice,
   course: courseSlice,
+  faq: faqSlice,
 });
 
 export default rootReducer;

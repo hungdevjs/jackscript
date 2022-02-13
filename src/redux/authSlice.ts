@@ -1,7 +1,7 @@
 import { createSlice, Reducer } from "@reduxjs/toolkit";
 
 import { AuthState, User, UserCourse } from "interfaces/auth";
-import { RootState } from "./store";
+import { RootState } from "interfaces/store";
 
 const initialState: AuthState = {
   initialized: false,

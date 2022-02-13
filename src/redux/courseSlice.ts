@@ -1,7 +1,7 @@
 import { createSlice, Reducer, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 
 import { CourseState } from "interfaces/course";
-import { RootState } from "./store";
+import { RootState } from "interfaces/store";
 
 import { get, getById, start, getLesson } from "../services/course.service";
 
