@@ -12,6 +12,8 @@ import {
   Stack,
   Button,
   createStyles,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
@@ -27,6 +29,8 @@ const Roadmap: FC = () => {
   const roadmaps = useSelector(selectRoadmap);
   const { translator } = useMultilanguage();
   const styles = useStyles();
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.down("md"));
 
   const [activeStep, setActiveStep] = useState<number>(0);
 
@@ -54,42 +58,46 @@ const Roadmap: FC = () => {
           {translator("Roadmap.Roadmap")}
         </Typography>
       </Box>
-      <Stepper activeStep={activeStep} orientation="vertical">
+      <Stepper activeStep={activeStep} orientation={isMd ? "vertical" : "horizontal"}>
         {roadmaps.map((item) => (
           <Step key={item.id}>
-            <StepLabel optional={item.level}>
-              <Box mb={1}>
-                <img src={item.image} width={80} alt="step" />
-              </Box>
-            </StepLabel>
-            <StepContent>
-              <Stack spacing={2}>
-                {item.courses.map((course) => (
-                  <Paper
-                    key={course.id}
-                    elevation={4}
-                    className={styles.courseItem}
-                    // @ts-ignore
-                    style={{ backgroundColor: cardColors[course.level] }}
-                    onClick={() => goToCourse(course.id)}
-                  >
-                    <Box p={2}>
-                      <Typography color={colors.white} fontWeight="bold">
-                        {course.name}
-                      </Typography>
-                    </Box>
-                  </Paper>
-                ))}
-              </Stack>
-              <Box mt={2} display="flex" gap={3}>
-                {activeStep < roadmaps.length && (
-                  <Button onClick={next} variant="contained">
-                    {activeStep === roadmaps.length - 1 ? translator("Roadmap.Finish") : translator("Roadmap.Continue")}
-                  </Button>
-                )}
-                {activeStep > 0 && <Button onClick={back}>{translator("Roadmap.Back")}</Button>}
-              </Box>
-            </StepContent>
+            <Box p={isMd ? 0 : 3}>
+              <StepLabel optional={item.level}>
+                <Box mb={1}>
+                  <img src={item.image} width={80} alt="step" />
+                </Box>
+              </StepLabel>
+              <StepContent>
+                <Stack spacing={2}>
+                  {item.courses.map((course) => (
+                    <Paper
+                      key={course.id}
+                      elevation={4}
+                      className={styles.courseItem}
+                      // @ts-ignore
+                      style={{ backgroundColor: cardColors[course.level] }}
+                      onClick={() => goToCourse(course.id)}
+                    >
+                      <Box p={2}>
+                        <Typography color={colors.white} fontWeight="bold">
+                          {course.name}
+                        </Typography>
+                      </Box>
+                    </Paper>
+                  ))}
+                </Stack>
+                <Box mt={2} display="flex" gap={3}>
+                  {activeStep < roadmaps.length && (
+                    <Button onClick={next} variant="contained">
+                      {activeStep === roadmaps.length - 1
+                        ? translator("Roadmap.Finish")
+                        : translator("Roadmap.Continue")}
+                    </Button>
+                  )}
+                  {activeStep > 0 && <Button onClick={back}>{translator("Roadmap.Back")}</Button>}
+                </Box>
+              </StepContent>
+            </Box>
           </Step>
         ))}
       </Stepper>
