@@ -62,8 +62,17 @@
     "Name": "Name",
     "NameIsEmpty": "Name is empty",
     "UpdateSuccessfully": "Update profile successfully",
-    "Password": "Password",
-    "NewPassword": "NewPassword",
     "Save": "Save"
+  },
+  "Settings": {
+    "Security": "Security",
+    "PasswordFormat": "Password must contain at least 8 characters, including at least 1 lower case, 1 upper case, 1 digit and 1 special character",
+    "ChangePasswordSuccessfully": "Change password successfully",
+    "Password": "Password",
+    "NewPassword": "New password",
+    "ChangePassword": "Change password",
+    "PasswordEmpty": "Password is empty",
+    "NewPasswordEmpty": "New password is empty",
+    "LogOut": "Log out"
   }
 }

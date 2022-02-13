@@ -17,9 +17,7 @@ export const getFaq = createAsyncThunk<any>("faq/get", async () => {
 const faqSlice = createSlice({
   name: "faq",
   initialState,
-  reducers: {
-    reset: () => initialState,
-  },
+  reducers: {},
   extraReducers: {
     //@ts-ignore
     [getFaq.fulfilled]: (state: RoadmapState, { payload }: any) => {
@@ -27,8 +25,6 @@ const faqSlice = createSlice({
     },
   },
 });
-
-export const { reset } = faqSlice.actions;
 
 export const selectFaq = (state: RootState) => state.faq.items;
 

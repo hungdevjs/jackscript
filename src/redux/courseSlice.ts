@@ -46,7 +46,6 @@ const courseSlice = createSlice({
   name: "course",
   initialState,
   reducers: {
-    reset: () => initialState,
     resetCourseDetail: (state: CourseState) => {
       state.courseDetail = null;
       state.courseDetailInitialized = false;
@@ -82,7 +81,7 @@ const courseSlice = createSlice({
   },
 });
 
-export const { reset, resetCourseDetail, resetLessonDetail } = courseSlice.actions;
+export const { resetCourseDetail, resetLessonDetail } = courseSlice.actions;
 
 export const selectCourses = (state: RootState) => state.course.items || [];
 export const selectCourseDetail = (state: RootState) => ({

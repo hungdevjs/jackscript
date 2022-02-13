@@ -1,31 +1,20 @@
 import { FC, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import {
-  Box,
-  Typography,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
-  Collapse,
-  createStyles,
-  useMediaQuery,
-  useTheme,
-  Theme,
-} from "@mui/material";
+import { Box, Typography, Collapse, createStyles, useMediaQuery, useTheme, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Search, Menu, Close } from "@mui/icons-material";
+
+import LanguageSelector from "./LanguageSelector";
 
 import Icons from "assets/Icons";
 import { paths } from "configs/routes";
 import colors from "utils/colors";
-
 import { selectUser } from "redux/authSlice";
 import useMultilanguage from "hooks/useMultilanguage";
 
 const Header: FC = () => {
-  const { language, translator, changeLanguage } = useMultilanguage();
+  const { translator } = useMultilanguage();
   const user = useSelector(selectUser);
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -111,20 +100,7 @@ const Header: FC = () => {
               </Box>
             )}
             <Box sx={{ minWidth: 120 }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">{translator("Header.Language")}</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={language}
-                  label={translator("Header.Language")}
-                  // @ts-ignore
-                  onChange={(e) => changeLanguage(e.target.value)}
-                >
-                  <MenuItem value="en">{translator("Header.English")}</MenuItem>
-                  <MenuItem value="vi">{translator("Header.Vietnamese")}</MenuItem>
-                </Select>
-              </FormControl>
+              <LanguageSelector />
             </Box>
           </>
         ) : (

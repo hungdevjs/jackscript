@@ -15,16 +15,12 @@ export const getTip = createAsyncThunk<any>("tip/get", async () => {
 const tipSlice = createSlice({
   name: "tip",
   initialState,
-  reducers: {
-    reset: () => initialState,
-  },
+  reducers: {},
   extraReducers: {
     //@ts-ignore
     [getTip.fulfilled]: (state: TipState, { payload }: any) => (state = payload),
   },
 });
-
-export const { reset } = tipSlice.actions;
 
 export const selectTip = (state: RootState) => state.tip;
 

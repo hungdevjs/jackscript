@@ -11,7 +11,6 @@ const languageSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    reset: () => initialState,
     setLanguage: {
       reducer: (state, action) => {
         state.language = action.payload;
@@ -23,7 +22,7 @@ const languageSlice = createSlice({
   },
 });
 
-export const { reset, setLanguage } = languageSlice.actions;
+export const { setLanguage } = languageSlice.actions;
 
 export const selectLanguage = (state: RootState) => state.lang.language;
 

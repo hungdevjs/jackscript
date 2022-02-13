@@ -17,9 +17,7 @@ export const getRoadmap = createAsyncThunk<any>("roadmap/get", async () => {
 const roadmapSlice = createSlice({
   name: "roadmap",
   initialState,
-  reducers: {
-    reset: () => initialState,
-  },
+  reducers: {},
   extraReducers: {
     //@ts-ignore
     [getRoadmap.fulfilled]: (state: RoadmapState, { payload }: any) => {
@@ -27,8 +25,6 @@ const roadmapSlice = createSlice({
     },
   },
 });
-
-export const { reset } = roadmapSlice.actions;
 
 export const selectRoadmap = (state: RootState) => state.roadmap.items;
 
