@@ -41,7 +41,7 @@ const Home: FC = () => {
                 <Avatar
                   alt="user"
                   src="https://res.cloudinary.com/dzlqhq434/image/upload/v1644311731/tips/Emi-ZnAVkAEqtVq_esdtmh.jpg"
-                  sx={{ width: 100, height: 100 }}
+                  sx={{ width: 100, height: 100, boxShadow: `` }}
                   // variant="rounded"
                 />
               </Box>

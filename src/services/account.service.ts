@@ -6,3 +6,5 @@ export const logIn = ({ email, password }: { email: string; password: string }) 
   api.post(`${ACCOUNT_URL}/logIn`, { email, password });
 
 export const getInfo = () => api.get(`${ACCOUNT_URL}/me`);
+
+export const updateInfo = (data: { name: string }) => api.post(`${ACCOUNT_URL}/me`, data);

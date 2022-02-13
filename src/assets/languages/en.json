@@ -56,5 +56,14 @@
     "Progress": "Progress",
     "Plan": "Plan",
     "Settings": "Settings"
+  },
+  "Profile": {
+    "Email": "Email",
+    "Name": "Name",
+    "NameIsEmpty": "Name is empty",
+    "UpdateSuccessfully": "Update profile successfully",
+    "Password": "Password",
+    "NewPassword": "NewPassword",
+    "Save": "Save"
   }
 }
