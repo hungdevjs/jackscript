@@ -60,7 +60,8 @@ const Header: FC = () => {
         justifyContent={isLg ? "flex-start" : "space-around"}
         paddingX={5}
         paddingY={2}
-        borderBottom={`1px solid ${colors.secondary}`}>
+        borderBottom={`1px solid ${colors.secondary}`}
+      >
         <img
           src={Icons.jackscript}
           alt="logo"
@@ -83,9 +84,12 @@ const Header: FC = () => {
               {routes.map((route) => (
                 <Box mx={5} key={route.name}>
                   <Typography
+                    fontWeight="bold"
+                    color={colors.dark}
                     className={styles.text}
                     style={pathname === route.path ? { color: colors.primary } : {}}
-                    onClick={() => navigate(route.path)}>
+                    onClick={() => navigate(route.path)}
+                  >
                     {route.name}
                   </Typography>
                 </Box>
@@ -94,7 +98,13 @@ const Header: FC = () => {
             {!user && (
               <Box display="flex" alignItems="center" gap={3}>
                 {authRoutes.map((route) => (
-                  <Typography key={route.name} className={styles.text} onClick={() => navigate(route.path)}>
+                  <Typography
+                    key={route.name}
+                    fontWeight="bold"
+                    color={colors.dark}
+                    className={styles.text}
+                    onClick={() => navigate(route.path)}
+                  >
                     {route.name}
                   </Typography>
                 ))}
@@ -109,7 +119,8 @@ const Header: FC = () => {
                   value={language}
                   label={translator("Header.Language")}
                   // @ts-ignore
-                  onChange={(e) => changeLanguage(e.target.value)}>
+                  onChange={(e) => changeLanguage(e.target.value)}
+                >
                   <MenuItem value="en">{translator("Header.English")}</MenuItem>
                   <MenuItem value="vi">{translator("Header.Vietnamese")}</MenuItem>
                 </Select>
@@ -130,9 +141,12 @@ const Header: FC = () => {
             {[...routes, ...(!user ? authRoutes : [])].map((route) => (
               <Box key={route.name} paddingY={2}>
                 <Typography
+                  fontWeight="bold"
+                  color={colors.dark}
                   className={styles.text}
                   style={pathname === route.path ? { color: colors.primary } : {}}
-                  onClick={() => navigate(route.path)}>
+                  onClick={() => navigate(route.path)}
+                >
                   {route.name}
                 </Typography>
               </Box>
@@ -162,8 +176,6 @@ const useStyles: any = makeStyles((theme: Theme) =>
       },
     },
     text: {
-      fontWeight: 700,
-      fontSize: "1.25rem",
       cursor: "pointer",
       "&:hover": {
         color: colors.primary,
