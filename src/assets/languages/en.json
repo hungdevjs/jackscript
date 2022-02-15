@@ -74,5 +74,9 @@
     "PasswordEmpty": "Password is empty",
     "NewPasswordEmpty": "New password is empty",
     "LogOut": "Log out"
+  },
+  "Plan": {
+    "FlexiblePlans": "Flexible plans",
+    "ChooseYourPlan": "Choose a plan that works best for you"
   }
 }

@@ -34,7 +34,7 @@ const Home: FC = () => {
   return (
     <Box py={4}>
       <Grid container className={styles.container}>
-        <Grid item xs={11} sm={11} md={8} lg={6} xl={6}>
+        <Grid item xs={11} sm={11} md={8} lg={8} xl={8}>
           <Box p={2}>
             <Box display="flex" flexDirection="column" alignItems="center">
               <Box mb={2}>
