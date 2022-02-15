@@ -77,6 +77,17 @@
   },
   "Plan": {
     "FlexiblePlans": "Flexible plans",
-    "ChooseYourPlan": "Choose a plan that works best for you"
+    "ChooseYourPlan": "Choose a plan that works best for you",
+    "Popular": "Popular",
+    "YourPlan": "Your plan",
+    "month": "month",
+    "ChoosePlan": "Choose plan",
+    "Feature1": "Learn all basic courses on JackScript",
+    "Feature2": "JackScript chat mentoring (19h-22h)",
+    "Feature3": "JackScript call mentoring 1h/day (19h-22h)",
+    "Feature4": "JackScript chat mentoring 24/24",
+    "Feature5": "Learn all advanced courses on JackScript",
+    "Feature6": "Promote to JackScript's partners",
+    "Feature7": "1-1 mentor supporting by JackScript mentoring or private message app (Telegram, Zalo, Messenger,...)"
   }
 }

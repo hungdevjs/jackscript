@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { Grid, Box, Typography, Paper, Stack, createStyles, Button } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { Grid, Box, Typography, Paper, Stack, Button } from "@mui/material";
 import { Check } from "@mui/icons-material";
 
 import Images from "assets/Images";
@@ -12,40 +11,26 @@ import colors from "utils/colors";
 const Plan: FC = () => {
   const user = useSelector(selectUser);
   const { translator } = useMultilanguage();
-  const styles = useStyles();
 
   const plans = [
     {
       name: "FREE",
       image: Images.free,
       price: "0",
-      features: ["Learn all basic courses on JackScript", "JackScript chat mentoring (19h-22h)"],
+      features: ["Feature1", "Feature2"],
     },
     {
       name: "SILVER",
       isPopular: true,
       image: Images.silver,
       price: "200,000",
-      features: [
-        "Learn all basic courses on JackScript",
-        "JackScript chat mentoring (19h-22h)",
-        "JackScript call mentoring 1h/day (19h-22h)",
-        "Learn all advanced courses on JackScript",
-        "Promote to JackScript's partners",
-      ],
+      features: ["Feature1", "Feature2", "Feature3", "Feature5", "Feature6"],
     },
     {
       name: "GOLD",
       image: Images.gold,
       price: "500,000",
-      features: [
-        "Learn all basic courses on JackScript",
-        "JackScript chat mentoring 24/24",
-        "JackScript call mentoring 1h/day (19h-22h)",
-        "Learn all advanced courses on JackScript",
-        "Promote to JackScript's partners",
-        "1-1 mentor supporting by JackScript mentoring or private message app (Telegram, Zalo, Messenger,...)",
-      ],
+      features: ["Feature1", "Feature4", "Feature3", "Feature5", "Feature6", "Feature7"],
     },
   ];
 
@@ -77,7 +62,7 @@ const Plan: FC = () => {
                     px={1}
                   >
                     <Typography fontSize="0.75rem" fontWeight={600} color={colors.white}>
-                      Popular
+                      {translator("Plan.Popular")}
                     </Typography>
                   </Box>
                 )}
@@ -94,7 +79,7 @@ const Plan: FC = () => {
                     px={1}
                   >
                     <Typography fontSize="0.75rem" fontWeight={600} color={colors.white}>
-                      Your plan
+                      {translator("Plan.YourPlan")}
                     </Typography>
                   </Box>
                 )}
@@ -105,7 +90,7 @@ const Plan: FC = () => {
                       {plan.name}
                     </Typography>
                     <Typography fontWeight={600} fontSize="0.9rem" color={colors.dark}>
-                      ₫ {plan.price} /month
+                      ₫ {plan.price} / {translator("Plan.month")}
                     </Typography>
                   </Box>
                 </Box>
@@ -116,7 +101,7 @@ const Plan: FC = () => {
                       <Box key={feat} display="flex" gap={2}>
                         <Check color="success" />
                         <Typography key={feat} fontWeight={600} fontSize="0.9rem" color={colors.dark}>
-                          {feat}
+                          {translator(`Plan.${feat}`)}
                         </Typography>
                       </Box>
                     ))}
@@ -125,7 +110,7 @@ const Plan: FC = () => {
                 <Box mt={3} display="flex" flexDirection="column">
                   <Button variant="contained" color="success" disabled={plan.name === user?.plan || true}>
                     <Typography fontWeight={600} color={colors.white} textTransform="none">
-                      Choose Plan
+                      {translator("Plan.ChoosePlan")}
                     </Typography>
                   </Button>
                 </Box>
@@ -139,5 +124,3 @@ const Plan: FC = () => {
 };
 
 export default Plan;
-
-const useStyles: any = makeStyles(() => createStyles({}));

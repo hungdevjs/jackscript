@@ -57,5 +57,38 @@
     "Plan": "Tài khoản",
     "Settings": "Cài đặt",
     "Save": "Lưu"
+  },
+  "Profile": {
+    "Email": "Email",
+    "Name": "Tên",
+    "NameIsEmpty": "Tên rỗng",
+    "UpdateSuccessfully": "Chỉnh sửa thông tin thành công",
+    "Save": "Lưu"
+  },
+  "Settings": {
+    "Security": "Bảo mật",
+    "PasswordFormat": "Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm ít nhất 1 chữ hoa, 1 chữ thường, 1 chữ số và 1 ký tự đặc biệt",
+    "ChangePasswordSuccessfully": "Đổi mật khẩu thành công",
+    "Password": "Mật khẩu",
+    "NewPassword": "Mật khẩu mới",
+    "ChangePassword": "Đổi mật khẩu",
+    "PasswordEmpty": "Mật khẩu rỗng",
+    "NewPasswordEmpty": "Mật khẩu mới rỗng",
+    "LogOut": "Đăng xuất"
+  },
+  "Plan": {
+    "FlexiblePlans": "Gói tài khoản",
+    "ChooseYourPlan": "Chọn gói tài khoản phù hợp với bạn",
+    "Popular": "Phổ biến",
+    "YourPlan": "Của bạn",
+    "month": "tháng",
+    "ChoosePlan": "Chọn gói",
+    "Feature1": "Sử dụng tất cả các khóa học cơ bản trên JackScript",
+    "Feature2": "Hỗ trợ qua tin nhắn chat (19h-22h)",
+    "Feature3": "Hỗ trợ qua cuộc gọi 1h/ngày (19h-22h)",
+    "Feature4": "Hỗ trợ qua tin nhắn 24/24",
+    "Feature5": "Sử dụng tất cả các khóa học nâng cao trên JackScript",
+    "Feature6": "Giới thiệu đến các đối tác của JackScript",
+    "Feature7": "Jỗ trợ 1-1 qua nền tảng JackScript hoặc các ứng dụng nhắn tin gọi điện khác (Telegram, Zalo, Messenger,...)"
   }
 }
