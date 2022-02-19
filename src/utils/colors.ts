@@ -3,6 +3,8 @@ const colors = {
   dark: "#888",
   secondary: "#ddd",
   white: "#fff",
+  opacityBlack: "rgba(0, 0, 0, .3)",
+  opacityWhite: "rgba(255, 255, 255, .3)",
 };
 
 export const cardColors = {
