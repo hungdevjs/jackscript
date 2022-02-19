@@ -2,6 +2,7 @@ import { FC, useState, useMemo, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Box, Grid, Tabs, Tab, Typography, createStyles } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import axios from "axios";
 
 import Loading from "components/Loading";
 import Avatar from "./components/Avatar";
@@ -10,11 +11,12 @@ import Progress from "./components/Progress";
 import Plan from "./components/Plan";
 import Settings from "./components/Settings";
 
-import { selectUser } from "redux/authSlice";
+import { selectUser, updateAvatar as updateAvatarAction } from "redux/authSlice";
 import colors from "utils/colors";
 import useMultilanguage from "hooks/useMultilanguage";
 import useAlert from "hooks/useAlert";
-import { getSignature, uploadImage } from "services/cloudinary.service";
+import { getUpdateAvatarSignature, updateAvatar } from "services/account.service";
+import Images from "assets/Images";
 
 const eager = "c_pad,h_300,w_400|c_crop,h_200,w_260";
 
@@ -50,25 +52,31 @@ const Home: FC = () => {
     async (file: any, signData) => {
       setIsLoading(true);
       try {
-        const { timestamp, signature, cloudName, apiKey } = signData;
-        const url = "https://api.cloudinary.com/v1_1/" + cloudName + "/auto/upload";
+        const { timestamp, signature, cloudName, apiKey, data } = signData;
+        const url = "https://api.cloudinary.com/v1_1/" + cloudName + "/image/upload";
 
         const formData = new FormData();
+        const instance = axios.create();
         formData.append("file", file);
         formData.append("api_key", apiKey);
         formData.append("timestamp", timestamp);
         formData.append("signature", signature);
-        formData.append("eager", eager);
-        formData.append("folder", user?.id as string);
 
-        // await uploadImage(url, formData);
+        for (const key of Object.keys(data)) {
+          formData.append(key, data[key]);
+        }
+
+        const res = await instance.post(url, formData);
+        const { public_id: avatarPublicId, url: avatar } = res.data;
+        await updateAvatar({ avatarPublicId });
+        dispatch(updateAvatarAction({ avatar }));
         alert("Change avatar successfully", "success");
       } catch (err: any) {
         alert(err.response?.data || err.message, "error");
       }
       setIsLoading(false);
     },
-    [user]
+    [dispatch]
   );
 
   const onImageChange = useCallback(
@@ -76,7 +84,7 @@ const Home: FC = () => {
       const file = e.target.files[0];
       if (file) {
         if (!signData) {
-          const res = await getSignature(user?.id as string, eager);
+          const res = await getUpdateAvatarSignature();
           setSignData(res.data);
           uploadAvatar(file, res.data);
         } else {
@@ -84,7 +92,7 @@ const Home: FC = () => {
         }
       }
     },
-    [signData, user, uploadAvatar]
+    [signData, uploadAvatar]
   );
 
   const previewUrl = useMemo(() => (file ? URL.createObjectURL(file) : ""), [file]);
@@ -101,13 +109,7 @@ const Home: FC = () => {
           <Box p={2}>
             <Box display="flex" flexDirection="column" alignItems="center">
               <Box mb={2}>
-                <Avatar
-                  url={
-                    previewUrl ||
-                    "https://res.cloudinary.com/dzlqhq434/image/upload/v1644937495/commons/default-avatar_puwpgk.png"
-                  }
-                  onClick={openFileInput}
-                />
+                <Avatar url={previewUrl || user?.avatar || Images.defaultAvatar} onClick={openFileInput} />
               </Box>
               <Box>
                 <Typography fontSize="1.1rem" fontWeight={600} align="center">

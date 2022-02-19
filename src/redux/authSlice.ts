@@ -49,10 +49,21 @@ const authSlice = createSlice({
         return { payload };
       },
     },
+    updateAvatar: {
+      reducer: (state, action) => {
+        const { avatar } = action.payload;
+        if (state.user) {
+          state.user.avatar = avatar;
+        }
+      },
+      prepare: (payload: { avatar: string }): any => {
+        return { payload };
+      },
+    },
   },
 });
 
-export const { reset, setUser, updateLesson, updateProfile } = authSlice.actions;
+export const { reset, setUser, updateLesson, updateProfile, updateAvatar } = authSlice.actions;
 
 export const selectInitialized = (state: RootState) => state.auth.initialized;
 export const selectUser = (state: RootState) => state.auth.user;

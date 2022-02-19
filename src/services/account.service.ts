@@ -9,6 +9,10 @@ export const getInfo = () => api.get(`${ACCOUNT_URL}/me`);
 
 export const updateInfo = (data: { name: string }) => api.put(`${ACCOUNT_URL}/me`, data);
 
+export const getUpdateAvatarSignature = () => api.get(`${ACCOUNT_URL}/me/avatar/signature`);
+
+export const updateAvatar = (data: { avatarPublicId: string }) => api.put(`${ACCOUNT_URL}/me/avatar`, data);
+
 export const changePassword = (data: { password: string; newPassword: string }) =>
   api.put(`${ACCOUNT_URL}/me/password`, data);
 

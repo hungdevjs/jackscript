@@ -7,6 +7,7 @@ export interface User {
   id: string;
   email: string;
   name: string;
+  avatar?: string;
   level: string;
   plan: string;
   courses: UserCourse[];
