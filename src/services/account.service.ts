@@ -11,3 +11,5 @@ export const updateInfo = (data: { name: string }) => api.put(`${ACCOUNT_URL}/me
 
 export const changePassword = (data: { password: string; newPassword: string }) =>
   api.put(`${ACCOUNT_URL}/me/password`, data);
+
+export const search = (searchString: string) => api.get(`${ACCOUNT_URL}/me/search`, { params: { searchString } });

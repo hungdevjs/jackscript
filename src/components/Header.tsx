@@ -1,11 +1,12 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Box, Typography, Collapse, createStyles, useMediaQuery, useTheme, Theme } from "@mui/material";
+import { Box, Typography, Collapse, createStyles, useMediaQuery, useTheme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Search, Menu, Close } from "@mui/icons-material";
+import { Menu, Close } from "@mui/icons-material";
 
 import LanguageSelector from "./LanguageSelector";
+import SearchBox from "./SearchBox";
 
 import Icons from "assets/Icons";
 import { paths } from "configs/routes";
@@ -22,11 +23,6 @@ const Header: FC = () => {
   const isLg = useMediaQuery(theme.breakpoints.down("lg"));
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const [search, setSearch] = useState<string>("");
-  useEffect(() => {
-    // search logic
-  }, [search]);
 
   const styles = useStyles();
 
@@ -60,15 +56,7 @@ const Header: FC = () => {
         />
         {!isLg ? (
           <>
-            <Box display="flex" alignItems="center">
-              <Search color="primary" />
-              <input
-                className={styles.input}
-                placeholder={translator("Header.TypeToSearch")}
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </Box>
+            <SearchBox />
             <Box display="flex">
               {routes.map((route) => (
                 <Box mx={5} key={route.name}>
@@ -136,20 +124,10 @@ const Header: FC = () => {
 
 export default Header;
 
-const useStyles: any = makeStyles((theme: Theme) =>
+const useStyles: any = makeStyles(() =>
   createStyles({
     logo: {
       cursor: "pointer",
-    },
-    input: {
-      border: 0,
-      padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
-      marginLeft: theme.spacing(2),
-      fontSize: "1rem",
-      color: colors.dark,
-      "&:focus": {
-        outline: "none",
-      },
     },
     text: {
       cursor: "pointer",
